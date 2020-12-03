@@ -18,7 +18,7 @@ struct Entry {
 		return c >= min && c <= max;
 	}
 	bool validity_rule_2() const {
-		return rest[min - 1] == n ^ rest[max - 1] == n;
+		return (rest[min - 1] == n) ^ (rest[max - 1] == n);
 	}
 };
 
