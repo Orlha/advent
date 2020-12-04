@@ -3,8 +3,8 @@
 #include <algorithm>
 
 struct Entry {
-	int min = 0, max = 0;
-	char n = '0';
+	int min, max;
+	char n;
 	std::string rest;
 	friend std::ifstream& operator>>(std::ifstream& f, Entry& b) {
 		f >> b.min >> b.max >> b.n;
@@ -25,14 +25,10 @@ struct Entry {
 int main() {
 	std::ifstream f { "input.txt" };
 	int valid[2] { 0 };
-	while(f) {
-		Entry e;
-		if(!(f >> e)) {
-			break;
-		};
+	for(Entry e; f >> e; ) {
 		if(e.validity_rule_1()) ++valid[0];
 		if(e.validity_rule_2()) ++valid[1];
 	}
-	std::cout << "Valid passwords: " << valid[0] << "\n";
-	std::cout << "Valid passwords: " << valid[1] << "\n";
+	std::cout << "Valid passwords 1: " << valid[0] << "\n";
+	std::cout << "Valid passwords 2: " << valid[1] << "\n";
 }
